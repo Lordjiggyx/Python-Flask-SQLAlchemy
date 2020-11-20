@@ -15,7 +15,7 @@ import logging
 #Instantaiting application referencing the file 
 app = Flask(__name__)
 #Inidicating database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost/pfsql'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@127.0.0.1/pfsql'
 #Initilise db
 db = SQLAlchemy(app)
 
