@@ -124,3 +124,59 @@ This is the same for any javascript file
 {{}} - things you want to be printed in strings this gives the result of functions pretty much
 
 ****
+
+
+===Setting Up Database====
+
+import sqlalchemy from flask_sqlalchemy in the app.py file
+
+from flask_sqlalchemy import SQLAlchemy
+
+
+Then to configure the application to indicate where the Database is located
+
+To do this you must use the app.config and pass in the keyword SQLALCHEMY_DATABASE_URI and then pass in the url to the Database
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost/pfsql'
+
+Then we initilise the Database and pass in the application
+
+db = SQLAlchemy(app)
+
+we can then create a model
+
+
+class Todo(db.Model):
+    #Attributes
+    id = db.Column(db.Integer, primary_key = True)
+    content= db.Column(db.String(200))
+    date_created= db.Column(db.DateTime , default =datetime.now())
+
+    #Function that returns id using jinja syntax
+    def __message__(self):
+        return '<Task %r>' % self.id
+
+When making a reference to any fields or funcitons from sqlalchemy you can just use db. and then the required field or method it acts the smae as usual
+
+
+******VERY IMPORTANT *****
+You need to put this code into your settings.json file
+
+ "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint-flask"
+    ]
+
+You must then install pylint flask
+
+pip install pylint-flask
+*************************
+
+
+Then create a python shell and import the Database and then create the model and db
+
+>>>from app import db
+>>>db.create_all()
+
+This will model all the tables
