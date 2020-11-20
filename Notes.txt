@@ -281,3 +281,21 @@ this redirect will take in the task variable as a parameter which is assigned to
 in the update.html we will get the task from the server and auto populate the text input the the task content
 
 then we can go back to our update method and then chnage the todo content to what is being passed in from the webpage
+
+
+--Deploying to Heroku---
+
+Search up heroku cli and install the necessary one
+
+run npm i -g heroku
+
+in the terminal type in heroku login
+
+run pip install gunicorn
+
+pip freeze > requirements.txt
+
+git init
+
+git add.
+git commit
