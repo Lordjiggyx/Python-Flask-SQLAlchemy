@@ -265,3 +265,19 @@ we then attempt to delete it if it found and then redirect the user to the home 
 Then we have to go to our index page and then pass in the link to the route taht will delete the current task using jinnja
 
 <a href="/del/{{task.id}}">Delete</a>
+
+
+-Update A Task-
+
+Update works pretty much the same logic wise just a few small changes
+
+the decorator must take in methods with post and get 
+the method will take in an id and then query the database
+
+we can then redirect the user to the a new template called update.html
+
+this redirect will take in the task variable as a parameter which is assigned to the task we got from the db 
+
+in the update.html we will get the task from the server and auto populate the text input the the task content
+
+then we can go back to our update method and then chnage the todo content to what is being passed in from the webpage

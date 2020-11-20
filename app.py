@@ -61,7 +61,7 @@ def index():
 @app.route('/delete/<int:id>')
 #Takes in id para
 def delete(id):
-    #This will query the DB and if it acnnot find the objecxt with the matching id it will just return a 404
+    #This will query the DB and 
     task_to_delete = Todo.query.get(id)
 
     try:
@@ -72,7 +72,31 @@ def delete(id):
         #Using redirect to redirect user to homepage
         return redirect('/')
     except: 
-        return "Error detected: Task could not be deleted from database"        
+        return "Error detected: Task could not be deleted from database"   
+
+
+#Method to delete object
+@app.route('/update/<int:id>' ,methods=['GET', 'POST'])
+#Takes in id para
+def update(id):
+    #This will query the DB 
+    task_to_updatee = Todo.query.get(id)
+
+    #If method is post the todo will be added to the database
+    if request.method == 'POST':
+      #Setting the data from the content box to the actual task
+        task_to_updatee.content = request.form['content']
+
+        try:
+            db.session.commit()
+            #redirect the user to the homepage
+            return redirect("/")
+        except:
+            return "There was an issue updating the task"
+
+    else:
+        return render_template('update.html' , task = task_to_updatee)
+
 
 if __name__ == "__main__":
     #Debug set to true to indicate any errors
