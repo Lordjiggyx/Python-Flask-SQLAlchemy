@@ -8,12 +8,19 @@ from flask_sqlalchemy import SQLAlchemy
 #import datetime
 from datetime import datetime
 
+import sys
+import logging
+
+
 #Instantaiting application referencing the file 
 app = Flask(__name__)
 #Inidicating database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost/pfsql'
 #Initilise db
 db = SQLAlchemy(app)
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 
 #model class
