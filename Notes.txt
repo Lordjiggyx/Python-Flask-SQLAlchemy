@@ -53,3 +53,47 @@ You can then create a file called app.py or whatever you want to call it
 We can then go into starting by creating the index file you can check the code out for this in the commit
 
 localhost:5000 is where this application will reside after it has been started
+
+
+=== Static Content ===
+
+Create 2 folders static and templates
+
+Then in your app.py folder import render_template
+
+In the templates folder createa a file called index.html
+
+Now what we will do in app.py index() method is change waht is returned
+
+instead of returning a string we will return the index.html file
+
+to do this you use the render_template() method and pass in the name of the file, ou do not need to specify the folder as it knows to look in the template folder for the file
+
+This file can contain basic html and when you refresh the page you will see its getting its content from this page 
+
+-Template Inheritance-
+
+Template Inheritance allows us to create 1 master html file that contains the skleton of what each page will look like and just inherit it to each other page and insert code where you need to, it reduces boilerplate code
+
+to do this create a file called base.html in the templates folder
+
+so in this file we willl use jinja syntax this is the template engine that flask uses 
+
+{% block head %} {% endblock %} replace the titile with this code
+
+This code creates a blovk which allows us to insert code in other pages that inherit this template
+
+you can create another block for the body of the webpage
+
+{% block body %} {% endblock %}
+
+
+Then in index.html we can clear it and inherit the base template to do this you type the following 
+
+{% extends 'base.html' %}
+
+You can then copy the blocks and begin to put code into them using html
+
+Once you reload the page you'll see the content is rendered 
+
+This can be used greatly for referencing links to css

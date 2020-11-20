@@ -1,5 +1,5 @@
-#Importing flask
-from flask import Flask
+#Importing packages
+from flask import Flask, render_template
 
 #Instantaiting application referencing the file 
 app = Flask(__name__)
@@ -7,7 +7,7 @@ app = Flask(__name__)
 #Creating index route
 @app.route("/")
 def index():
-    return "Hello World"
+    return render_template('index.html')
 
 if __name__ == "__main__":
     #Debug set to true to indicate any errors
