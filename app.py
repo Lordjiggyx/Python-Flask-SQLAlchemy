@@ -1,5 +1,5 @@
 #Importing functions from flask
-from flask import Flask, render_template , url_for
+from flask import Flask, render_template , url_for , request , redirect
 
 #import sqlAalchemy from flask-sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
@@ -28,9 +28,31 @@ class Todo(db.Model):
         return '<Task %r>' % self.id
 
 #Creating index route
-@app.route("/")
+@app.route("/", methods=['POST','GET'])
 def index():
-    return render_template('index.html')
+
+    #If method is post the todo will be added to the database
+    if request.method == 'POST':
+        #Get data from input which is referenced by name
+        task_content = request.form['content']
+        #Creating Task object with information from form
+        new_task = Todo(content=task_content)
+
+        try:
+            #Adding to session
+            db.session.add(new_task)
+            #commiting to database
+            db.session.commit()
+            #Using redirect to redirect user to homepage
+            return redirect('/')
+        except:
+            return "Error detected: Task could not be added to database"
+    #Otherwise it would return the page 
+    else:
+        #Querys the database and returns all the items by time that they were created
+        tasks = Todo.query.order_by(Todo.date_created).all()
+        print(tasks)
+        return render_template('index.html' , tasks = tasks)
 
 if __name__ == "__main__":
     #Debug set to true to indicate any errors

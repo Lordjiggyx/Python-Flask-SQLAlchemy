@@ -132,6 +132,7 @@ import sqlalchemy from flask_sqlalchemy in the app.py file
 
 from flask_sqlalchemy import SQLAlchemy
 
+You also need to install mysql-connector-python
 
 Then to configure the application to indicate where the Database is located
 
@@ -187,3 +188,58 @@ This will model all the tables
 write approppriate html in the index.html
 
 Now we will start bulilding the API
+
+in the app.py file we will begin to create the routes that the user will be able to use 
+
+we will start at the index method
+
+in the decorator after the route we will add an option called methods and set it to equal a list of HTTP Methods
+
+@app.route("/", methoods=['POST','GET'])
+
+what this does is that it lets us add methods to th route so instead of get by default we can now post to the route too which we wnat to do to send info to the Database
+
+In the html file we will need a from and 2 input types in this form 
+
+  <form action="/" method="POST">
+        <input type="text" name ="content" id="content">
+        <input type="submit" value ="Add Task">
+    </form>
+
+we indicate the route and it's method
+
+and then we create 2 input types one for the actual text and the other is a button
+
+back to the app.py file index method we will begin to change it up
+
+You need to import request from flask
+
+in the method we will then determine what will happen based on whether the method is post or get
+
+-Adding Task to db-
+
+in the index method we will get the contents of the form that is put into the input field
+
+task_content = request.form['content']
+
+We then create a todo object that will have the content of the information from the input
+
+
+we will then use a try except 
+
+in here we will add the object to the session and then commit it to the Database and finally redirect the user ot the home page
+
+**You must import redirect as well**
+
+in the else statement of our method we can create a variable that is the tasks from the database
+
+tasks = Todo.query.order_by(Todo.date_created).all()
+
+we then pass this into the render_template method as a parameter and set it to equal the tasks obtained from the db
+
+return render_template('index.html' , tasks = tasks)
+
+In our index.html we can just use a jinja for loop and then get the parameters for each 
+
+
+
