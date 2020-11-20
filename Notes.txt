@@ -295,7 +295,22 @@ run pip install gunicorn
 
 pip freeze > requirements.txt
 
+create a file called Procfile
+
+in this file write the following
+
+web: gunicorn app:app
+
 git init
 
-git add.
-git commit
+commit and push everything
+
+heroku create <name>
+
+git remote -v
+
+git push heroku master
+
+
+
+commit 
