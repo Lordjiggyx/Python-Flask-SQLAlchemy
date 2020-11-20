@@ -1,0 +1,55 @@
+This is an introduction to using flask with python 
+
+This tutorial will go through the following 
+
+Setup & Workflow
+Getting the app running
+Templates and Static Content
+Setting up a Database
+Creating a basic CRUD application - TODO Liist application
+Deploying to Heroku
+
+====Setting Up Environment====
+To set up the environment you need to do the following
+
+install python 3.6+ and PIP
+Intsall virtualenv
+create a project directory
+create a virtual environment
+install required packages
+
+
+-Installing python 3.6+ and PIP-
+Check if you have it installed on your device if not search it up and download it
+
+
+-Install virtualenv-
+
+To install virtualenv you use PIP
+
+this is done in the terminal window
+
+pip install virtualenv
+
+virtualenv allows us to create a virtual environment what this means is that if we want to work with other people or collaborated project it make sit so that all the packages are contained in thr project and not on your device so you can transefer the project and if someone else wants to use it they can just install all the packages into the working directory 
+
+So the next thing you do is create a virtual environment
+
+to do this in the terminal you must use the following command 
+
+virtualenv <name>
+
+This will create a folder where the prokect will be located
+
+windows will then ask you if you want to use the virtual environment as the workspace folder and you say yes
+
+You then need to activate the environment to do this you need to go to the scripts folder and run the "activate" scripts
+
+next you need to install flask and flask-sqlalchemy using pip
+
+
+You can then create a file called app.py or whatever you want to call it 
+
+We can then go into starting by creating the index file you can check the code out for this in the commit
+
+localhost:5000 is where this application will reside after it has been started
