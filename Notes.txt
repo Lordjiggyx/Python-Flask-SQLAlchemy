@@ -243,3 +243,25 @@ In our index.html we can just use a jinja for loop and then get the parameters f
 
 
 
+-Delete A Task-
+
+create a route and pass in query parameter and then the delete method
+@app.route('/delete/<int:id>')
+
+
+so in this method we pass in an id parameter too
+
+we then query the database for the object with the matching db 
+
+we then attempt to delete it if it found and then redirect the user to the home page 
+
+    #Attempt to delete object
+    db.session.delete(task_to_delete)
+    #commiting to database
+    db.session.commit()
+    #Using redirect to redirect user to homepage
+    return redirect('/')
+
+Then we have to go to our index page and then pass in the link to the route taht will delete the current task using jinnja
+
+<a href="/del/{{task.id}}">Delete</a>

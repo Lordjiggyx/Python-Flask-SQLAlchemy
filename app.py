@@ -54,7 +54,28 @@ def index():
         print(tasks)
         return render_template('index.html' , tasks = tasks)
 
+
+
+
+#Method to delete object
+@app.route('/delete/<int:id>')
+#Takes in id para
+def delete(id):
+    #This will query the DB and if it acnnot find the objecxt with the matching id it will just return a 404
+    task_to_delete = Todo.query.get(id)
+
+    try:
+        #Attempt to delete object
+        db.session.delete(task_to_delete)
+         #commiting to database
+        db.session.commit()
+        #Using redirect to redirect user to homepage
+        return redirect('/')
+    except: 
+        return "Error detected: Task could not be deleted from database"        
+
 if __name__ == "__main__":
     #Debug set to true to indicate any errors
     #app.run starts the web server
     app.run(debug=True)
+
