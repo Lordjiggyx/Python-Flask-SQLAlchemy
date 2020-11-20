@@ -97,3 +97,30 @@ You can then copy the blocks and begin to put code into them using html
 Once you reload the page you'll see the content is rendered 
 
 This can be used greatly for referencing links to css
+
+
+- Static Content - 
+
+create a css folder in the static folder and create a css file and place whatever css you want
+
+in the base.html file you can link the css file 
+
+the only difference to linking the css file is the href
+
+we use jinja 
+
+we use a function from flask called url_for() and pass in the name of the folder and file name  you must incliude subdirectories too
+
+"{{url_for('static' , filename='css/main.css')}}"
+
+we must then also import url_for from flask
+
+This is the same for any javascript file
+
+
+***Quick Jinja Knowledge***
+
+{% %} - is for loops ifs 
+{{}} - things you want to be printed in strings this gives the result of functions pretty much
+
+****
