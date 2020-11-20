@@ -180,3 +180,10 @@ Then create a python shell and import the Database and then create the model and
 >>>db.create_all()
 
 This will model all the tables
+
+
+=== Creating Application ==
+
+write approppriate html in the index.html
+
+Now we will start bulilding the API
